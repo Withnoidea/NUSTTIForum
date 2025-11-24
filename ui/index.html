@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>校园论坛 - 低保真UI线框图</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background:#f5f5f5; }
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+      border: 1px solid #ddd;
+    }
+
+    /* 顶部导航 */
+    .topbar {
+      height: 60px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      justify-content: space-between;
+      background: #fafafa;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      background: #ccc;
+    }
+    .site-name {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .topbar-center {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+    }
+    .topbar-center span {
+      cursor: pointer;
+    }
+    .topbar-center span.active {
+      font-weight: bold;
+      border-bottom: 2px solid #333;
+      padding-bottom: 2px;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .search-box {
+      width: 220px;
+      height: 32px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 0 8px;
+      font-size: 13px;
+    }
+    .icon-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      background: #eee;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* 主体区域：三栏布局 */
+    .main {
+      display: flex;
+      padding: 10px 20px 20px;
+      gap: 16px;
+    }
+    .col-left {
+      width: 200px;
+      border-right: 1px solid #eee;
+      padding-right: 10px;
+      font-size: 13px;
+    }
+    .col-center {
+      flex: 1;
+      padding: 0 10px;
+    }
+    .col-right {
+      width: 260px;
+      border-left: 1px solid #eee;
+      padding-left: 10px;
+      font-size: 13px;
+    }
+
+    /* 左侧版块列表 */
+    .section-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .nav-list {
+      list-style: none;
+      margin-top: 5px;
+    }
+    .nav-list li {
+      padding: 6px 4px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .nav-list li.active {
+      background: #e6f0ff;
+      font-weight: bold;
+    }
+    .nav-list li:hover {
+      background: #f0f0f0;
+    }
+
+    /* 中间内容区 */
+    .post-editor {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #fafafa;
+    }
+    .post-editor textarea {
+      width: 100%;
+      height: 60px;
+      border: 1px dashed #ccc;
+      padding: 6px;
+      font-size: 13px;
+      resize: vertical;
+      margin-bottom: 6px;
+      background: #fff;
+    }
+    .btn-primary {
+      padding: 6px 12px;
+      font-size: 13px;
+      border-radius: 4px;
+      border: none;
+      background: #337ab7;
+      color: #fff;
+      cursor: pointer;
+    }
+    .btn-primary:active {
+      background: #286090;
+    }
+
+    .post-filter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0;
+      font-size: 12px;
+      color: #666;
+    }
+    .post-filter span {
+      margin-right: 8px;
+      cursor: pointer;
+    }
+    .post-filter span.active {
+      font-weight: bold;
+      color: #000;
+    }
+
+    .post-card {
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+    .post-title {
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .post-meta {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .post-tags {
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 1px 6px;
+      margin-right: 4px;
+      margin-bottom: 2px;
+      border-radius: 4px;
+      background: #f0f0f0;
+      font-size: 11px;
+    }
+    .post-ops {
+      font-size: 12px;
+      color: #666;
+      display: flex;
+      gap: 10px;
+    }
+
+    /* 右侧：公告和热点 */
+    .panel {
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #fafafa;
+    }
+    .panel h3 {
+      font-size: 14px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 4px;
+    }
+    .panel ul {
+      list-style: none;
+      font-size: 12px;
+    }
+    .panel ul li {
+      padding: 4px 0;
+      border-bottom: 1px dashed #eee;
+    }
+
+    /* 页脚 */
+    .footer {
+      border-top: 1px solid #eee;
+      padding: 8px 20px;
+      font-size: 12px;
+      color: #999;
+      text-align: center;
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- 顶部导航 -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="logo"></div>
+        <div class="site-name">校园论坛</div>
+      </div>
+      <div class="topbar-center">
+        <span class="active">广场</span>
+        <span>版块</span>
+        <span>活动</span>
+        <span>二手</span>
+        <span>排行</span>
+        <span>帮助</span>
+      </div>
+      <div class="topbar-right">
+        <input class="search-box" placeholder="搜索帖子 / 活动 / 用户..." />
+        <div class="icon-btn">信</div>
+        <div class="icon-btn">我</div>
+      </div>
+    </div>
+
+    <!-- 主体 三栏布局 -->
+    <div class="main">
+      <!-- 左侧：版块列表 -->
+      <div class="col-left">
+        <div class="section-title">版块导航</div>
+        <ul class="nav-list">
+          <li class="active">全部版块</li>
+          <li>学习交流</li>
+          <li>课程讨论</li>
+          <li>考研 / 考公</li>
+          <li>校园生活</li>
+          <li>宿舍 / 食堂</li>
+          <li>社团活动</li>
+          <li>二手交易</li>
+          <li>失物招领</li>
+          <li>树洞专区</li>
+        </ul>
+      </div>
+
+      <!-- 中间：帖子流 -->
+      <div class="col-center">
+        <!-- 发帖入口 -->
+        <div class="post-editor">
+          <textarea placeholder="有什么想和大家分享的？（标题和详细内容可在弹出的发帖页中填写）"></textarea>
+          <div style="display:flex; justify-content: space-between; align-items:center;">
+            <div style="font-size:12px; color:#666;">选择版块 / 标签（示意）</div>
+            <button class="btn-primary">发表帖子</button>
+          </div>
+        </div>
+
+        <!-- 筛选和排序 -->
+        <div class="post-filter">
+          <div>
+            <span class="active">最新</span>
+            <span>最热</span>
+            <span>回复最多</span>
+          </div>
+          <div>共 1234 条帖子（示意）</div>
+        </div>
+
+        <!-- 帖子卡片（示例1） -->
+        <div class="post-card">
+          <div class="post-title">[学习交流] 期末复习资料分享 & 复习群整理</div>
+          <div class="post-meta">
+            作者：某某同学 · 计算机学院 · 3小时前 · 浏览 256
+          </div>
+          <div class="post-tags">
+            <span class="tag">#期末考试</span>
+            <span class="tag">#资料分享</span>
+          </div>
+          <div class="post-meta" style="margin-bottom:6px;">
+            这里是帖子内容摘要区域，只展示前面一小段内容，点击卡片进入详情页查看完整内容……
+          </div>
+          <div class="post-ops">
+            <span>👍 32</span>
+            <span>💬 18</span>
+            <span>⭐ 收藏</span>
+            <span style="margin-left:auto;">举报</span>
+          </div>
+        </div>
+
+        <!-- 帖子卡片（示例2） -->
+        <div class="post-card">
+          <div class="post-title">[校园生活] 宿舍楼下新开的奶茶店怎么样？</div>
+          <div class="post-meta">
+            作者：匿名 · 经济学院 · 昨天 · 浏览 512
+          </div>
+          <div class="post-tags">
+            <span class="tag">#校园美食</span>
+            <span class="tag">#吐槽</span>
+          </div>
+          <div class="post-meta" style="margin-bottom:6px;">
+            帖子摘要区域……点击进入详情页可查看图片和完整讨论。
+          </div>
+          <div class="post-ops">
+            <span>👍 20</span>
+            <span>💬 45</span>
+            <span>⭐ 收藏</span>
+            <span style="margin-left:auto;">举报</span>
+          </div>
+        </div>
+
+        <!-- 你可以复制更多 post-card 作为占位 -->
+      </div>
+
+      <!-- 右侧：公告 & 热门 -->
+      <div class="col-right">
+        <div class="panel">
+          <h3>校园公告</h3>
+          <ul>
+            <li>【教务处】本周选课时间调整说明</li>
+            <li>【学工处】关于寒假安全事项提醒</li>
+            <li>【图书馆】考试周延长开放时间通知</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>今日热点帖子</h3>
+          <ul>
+            <li>1. 期末复习资料大合集（附下载链接示意）</li>
+            <li>2. 校园二手书集市活动预告</li>
+            <li>3. 宿舍电费省钱经验分享</li>
+            <li>4. 社团招新：编程社 / 演讲社</li>
+            <li>5. 树洞：关于毕业的那些话</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>热门话题标签</h3>
+          <div class="post-tags">
+            <span class="tag">#考研</span>
+            <span class="tag">#实习</span>
+            <span class="tag">#比赛</span>
+            <span class="tag">#二手书</span>
+            <span class="tag">#兼职</span>
+            <span class="tag">#树洞</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+      © 2025 校园论坛 · 低保真原型示意（仅为结构展示，可自行替换为正式视觉设计）
+    </div>
+  </div>
+</body>
+</html>
