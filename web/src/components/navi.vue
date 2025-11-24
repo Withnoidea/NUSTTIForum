@@ -1,6 +1,6 @@
 <template>
   <el-row class="tac">
-    <el-col :span="3">
+    <el-col :span="24">
       <h5 class="mb-2">版块导航</h5>
       <el-menu
         default-active="1"

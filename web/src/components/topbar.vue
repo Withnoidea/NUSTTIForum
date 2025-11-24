@@ -17,11 +17,11 @@ import Avatar from './avatar.vue';
           <span>排行</span>
           <span>帮助</span>
       </div>
+
       <div class="topbar-right">
         <!-- 搜索栏 -->
         <Search></Search>
           <div class="icon-btn">信</div>
-          <!-- <div class="icon-btn">我</div> -->
           <!-- 头像avatar -->
           <Avatar></Avatar>
 
@@ -44,6 +44,8 @@ import Avatar from './avatar.vue';
   align-items: center;
 }
 .logo {
+  border-radius: 15%;
+  border: 1px solid #5c5a5a;
   width: 40px;
   height: 40px;
   background-image: url('@/assets/logo.png');
